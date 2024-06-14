@@ -1,1 +1,28 @@
-@import "../node_modules/bootstrap/dist/css/bootstrap-grid.min.css"
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/assets/fonts/Poppins-Regular.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'YsabeauInfant';
+    src: url('/assets/fonts/YsabeauInfant-VariableFont_wght.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+$poppins-font: "Poppins", sans-serif;
+$ysabeau-font:  "YsabeauInfant", sans-serif;
+
+$dark-orange: #fd8636;
+$base-orange: #ffbd71;
+$light-orange: #fadcb2;
+
+body{
+    background-color: $light-orange;
+    color: $dark-orange;
+    font-family: $poppins-font;
+}
