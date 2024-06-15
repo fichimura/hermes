@@ -1,0 +1,22 @@
+@import "../../../styles.scss";
+
+.navbar{
+    background-color: $base-orange;
+}
+
+.navbar-brand{
+    font-family: $ysabeau-font;
+}
+
+.user-icon:active, .user-icon:focus, .user-icon:hover{
+    color: $light-orange
+}
+
+.dropdown-menu{
+    background-color: $base-orange;
+}
+
+.dropdown-item:active, .dropdown-item:focus, .dropdown-item:hover{
+    background-color:transparent;
+    color: white
+}
