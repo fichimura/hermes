@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { SubmitCancelComponent } from '../../ui/submit-cancel/submit-cancel.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-sign-up',
+  selector: 'app-sign-in',
   standalone: true,
   imports: [FormsModule, SubmitCancelComponent],
-  templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.scss',
+  templateUrl: './sign-in.component.html',
+  styleUrl: './sign-in.component.scss',
 })
-export class SignUpComponent {}
+export class SignInComponent {}
