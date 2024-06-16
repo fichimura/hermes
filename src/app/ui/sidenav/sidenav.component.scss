@@ -11,14 +11,7 @@ a{
 }
 
 .sidenav{
-    width: 15%;
+    width: 100%;
     background-color: $base-orange;
     border: 0.15rem solid $dark-orange;
-}
-
-
-@media screen and (max-width: 600px){
-    .sidenav{
-        width: 25%;
-    }
 }

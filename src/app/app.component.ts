@@ -5,8 +5,6 @@ import { SidenavComponent } from './ui/sidenav/sidenav.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, NavbarComponent, SidenavComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
