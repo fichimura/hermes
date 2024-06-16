@@ -1,0 +1,21 @@
+@import "../../../styles.scss"; 
+
+.signup{
+    background-color: $dark-orange;
+
+    &:hover, &:active, &:focus{
+        background-color: black;
+        color: $dark-orange
+    }
+}
+
+.cancel{
+    background-color: transparent;
+    border: 0.1rem solid $dark-orange;
+    color: $dark-orange;
+
+    &:hover, &:active, &:focus{
+        background-color: $dark-orange;
+        color: white
+    }
+}
