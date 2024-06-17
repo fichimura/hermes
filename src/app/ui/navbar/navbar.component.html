@@ -21,7 +21,18 @@
         <span class="fa-regular fa-user"></span>
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
-        <li><a class="dropdown-item" type="button">User</a></li>
+        @if (isAuth) {
+        <li>
+          <a class="dropdown-item" type="button"
+            >{{ user ? user.name : "User" }}'s page</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" type="button" (click)="onSignOut()"
+            >Sign out</a
+          >
+        </li>
+        }@else {
         <li>
           <a class="dropdown-item" type="button" routerLink="/sign-in"
             >Sign in</a
@@ -32,9 +43,7 @@
             >Sign up</a
           >
         </li>
-        <li>
-          <a class="dropdown-item" type="button">Logout</a>
-        </li>
+        }
       </ul>
     </div>
   </div>
