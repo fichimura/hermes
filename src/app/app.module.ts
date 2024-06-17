@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidenavComponent } from './ui/sidenav/sidenav.component';
 import { NavbarComponent } from './ui/navbar/navbar.component';
-import { AuthService } from './auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { UserComponent } from './pages/user/user.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     SidenavComponent,
     NavbarComponent,
+    UserComponent,
     HttpClientModule,
   ],
   bootstrap: [AppComponent],
