@@ -1,5 +1,6 @@
-<div class="container">
-  <form class="mb-5 mt-5">
+<div class="container mt-5">
+  <h2 class="mb-2">Sign up</h2>
+  <form class="mb-5" #f="ngForm" (ngSubmit)="onSignUp(f)">
     <div class="mb-3">
       <label for="inputName" class="form-label">Name</label>
       <input
@@ -44,6 +45,6 @@
         name="avatar"
       />
     </div>
-    <app-submit-cancel />
+    <app-submit-cancel [submitText]="'Sign up'" />
   </form>
 </div>
