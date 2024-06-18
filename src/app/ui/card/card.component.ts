@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -10,4 +11,11 @@ import { Component, input } from '@angular/core';
 })
 export class CardComponent {
   subject = input.required<any>();
+
+  constructor(private router: Router) {}
+
+  onCardClicked() {
+    console.log('card clicked', this.subject().id);
+    this.router.navigate(['/products', this.subject().id]);
+  }
 }

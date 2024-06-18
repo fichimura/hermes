@@ -7,6 +7,7 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { UserComponent } from './pages/user/user.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ProductsComponent } from './pages/products/products.component';
+import { ProductComponent } from './pages/products/product/product.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,13 @@ const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
   { path: 'products', component: ProductsComponent },
+  {
+    path: 'products',
+    children: [
+      { path: '', component: ProductsComponent },
+      { path: ':productId', component: ProductComponent },
+    ],
+  },
 ];
 
 @NgModule({
