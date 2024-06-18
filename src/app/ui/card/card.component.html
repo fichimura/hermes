@@ -1,0 +1,18 @@
+<div class="card mb-3 p-2">
+  @if(subject().image || subject().category.image){
+  <img
+    src="{{ subject().image ?? subject().category.image }}"
+    class="card-img-top"
+  />
+  }
+
+  <div class="card-body">
+    <div class="d-flex"></div>
+    <p class="fw-bold card-text">{{ subject().title }}</p>
+    <p class="card-text">{{ subject().price | currency : "USD" }}</p>
+    <div class="d-flex">
+      <p class="fst-italic me-2">Category:</p>
+      <p class="card-text">{{ subject().category.name }}</p>
+    </div>
+  </div>
+</div>
