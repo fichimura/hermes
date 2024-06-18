@@ -1,0 +1,16 @@
+<div class="container mt-3 w-100">
+  <div
+    class="subject-list d-flex flex-column"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="500"
+    [scrollWindow]="false"
+    (scrolled)="onScroll()"
+  >
+    <div class="">
+      @for(subject of this.subjects; track subject ){
+      <app-card [subject]="subject" />
+      }
+    </div>
+  </div>
+</div>
