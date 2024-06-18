@@ -15,4 +15,8 @@ export class ProductsService {
       `${this.PRODUCTS_URL}?offset=${offset}&limit=10`
     );
   }
+
+  getProduct(productId: string): Observable<any> {
+    return this.httpClient.get(`${this.PRODUCTS_URL}/${productId}`);
+  }
 }
