@@ -11,7 +11,15 @@ export class CategoriesService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getCategories(): Observable<any> {
-    return this.httpClient.get(this.CATEGORIES_URL);
+  getCategories(offset: number): Observable<any> {
+    return this.httpClient.get(
+      `${this.CATEGORIES_URL}/?offset=${offset}&limit=10`
+    );
+  }
+
+  getProductsOfCategory(
+    categoryId: string | null | undefined
+  ): Observable<any> {
+    return this.httpClient.get(`${this.CATEGORIES_URL}/${categoryId}/products`);
   }
 }

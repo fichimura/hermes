@@ -9,6 +9,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductComponent } from './pages/products/product/product.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
+import { CategoryProductsComponent } from './pages/categories/category-products/category-products.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,7 +23,13 @@ const routes: Routes = [
       { path: ':productId', component: ProductComponent },
     ],
   },
-  { path: 'categories', component: CategoriesComponent },
+  {
+    path: 'categories',
+    children: [
+      { path: '', component: CategoriesComponent },
+      { path: ':categoryId', component: CategoryProductsComponent },
+    ],
+  },
 ];
 
 @NgModule({

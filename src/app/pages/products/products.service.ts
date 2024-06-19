@@ -10,7 +10,7 @@ export class ProductsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getProducts(offset: string): Observable<any> {
+  getProducts(offset: number): Observable<any> {
     return this.httpClient.get(
       `${this.PRODUCTS_URL}?offset=${offset}&limit=10`
     );
