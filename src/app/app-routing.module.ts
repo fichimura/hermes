@@ -8,13 +8,13 @@ import { UserComponent } from './pages/user/user.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductComponent } from './pages/products/product/product.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
-  { path: 'products', component: ProductsComponent },
   {
     path: 'products',
     children: [
@@ -22,6 +22,7 @@ const routes: Routes = [
       { path: ':productId', component: ProductComponent },
     ],
   },
+  { path: 'categories', component: CategoriesComponent },
 ];
 
 @NgModule({
