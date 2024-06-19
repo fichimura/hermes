@@ -1,5 +1,6 @@
 <div class="card mb-3 p-2">
-  @if(subject().image || subject().category.image){
+  @if(context() === 'Products'){ @if(subject().image ||
+  subject().category.image){
   <img
     src="{{ subject().image ?? subject().category.image }}"
     class="card-img-top"
@@ -8,7 +9,7 @@
 
   <div class="card-body">
     <div class="d-flex"></div>
-    <a class="fw-bold card-text" (click)="onCardClicked()">{{
+    <a class="fw-bold card-text" (click)="onProductCardClicked()">{{
       subject().title
     }}</a>
     <p class="card-text">{{ subject().price | currency : "USD" }}</p>
@@ -17,4 +18,16 @@
       <p class="card-text">{{ subject().category.name }}</p>
     </div>
   </div>
+  }@else if(context() === 'Categories'){ @if(subject().image ||
+  subject().category.image){
+  <img src="{{ subject().image }}" class="card-img-top" />
+  }
+
+  <div class="card-body">
+    <div class="d-flex"></div>
+    <a class="fw-bold card-text" (click)="onCategoryCardClicked()">{{
+      subject().name
+    }}</a>
+  </div>
+  }@else{ }
 </div>

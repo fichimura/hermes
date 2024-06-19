@@ -11,11 +11,15 @@ import { Router } from '@angular/router';
 })
 export class CardComponent {
   subject = input.required<any>();
+  context = input.required<string>();
 
   constructor(private router: Router) {}
 
-  onCardClicked() {
-    console.log('card clicked', this.subject().id);
+  onProductCardClicked(): void {
     this.router.navigate(['/products', this.subject().id]);
+  }
+
+  onCategoryCardClicked(): void {
+    // TODO
   }
 }
