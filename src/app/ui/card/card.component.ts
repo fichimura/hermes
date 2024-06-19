@@ -20,6 +20,6 @@ export class CardComponent {
   }
 
   onCategoryCardClicked(): void {
-    // TODO
+    this.router.navigate(['/categories', this.subject().id]);
   }
 }
