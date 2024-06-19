@@ -7,9 +7,11 @@
     [scrollWindow]="false"
     (scrolled)="onScroll()"
   >
-    <div class="">
-      @for(subject of this.subjects; track subject ){
-      <app-card [subject]="subject" />
+    <div>
+      @if(this.context() === 'Categories'){
+      <h2>Go to the products by category</h2>
+      } @for(subject of this.subjects; track subject ){
+      <app-card [subject]="subject" [context]="this.context()" />
       }
     </div>
   </div>
