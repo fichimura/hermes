@@ -1,4 +1,7 @@
-<div class="container mt-3 w-100">
+<div class="container mt-5 w-100">
+  @if(this.context() === 'CategoryProducts'){
+  <a class="p-3 ms-3" (click)="onBackToCategories()">Back to the categories</a>
+  } @if(!this.loading){
   <div
     class="subject-list d-flex flex-column"
     infiniteScroll
@@ -15,4 +18,7 @@
       }
     </div>
   </div>
+  }@else{
+  <app-loading [loadingMessage]="'Loading...'" />
+  }
 </div>
