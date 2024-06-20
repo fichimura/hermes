@@ -1,0 +1,61 @@
+<div class="d-flex mb-3">
+  <div class="input-group">
+    <input
+      type="text"
+      class="form-control"
+      [placeholder]="'Search for products'"
+      [(ngModel)]="searchProductTitle"
+      name="searchProductTitle"
+    />
+    <button
+      class="btn"
+      type="button"
+      id="dropdownMenuButton1"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <i class="fa-solid fa-filter"></i>
+    </button>
+
+    <ul class="dropdown-menu w-75" aria-labelledby="dropdownMenuButton1">
+      <li class="p-2">
+        <div class="d-flex flex-column">
+          <label class="fst-italic">Filter by category</label>
+        </div>
+        <select class="form-select" [(ngModel)]="searchCategoryFilter">
+          <option class="fst-italic" value="">No category filter</option>
+          @for(category of this.categories; track category){
+          <option value="{{ category.id }}">
+            {{ category.name }}
+          </option>
+          }
+        </select>
+      </li>
+
+      <li class="p-2">
+        <label class="fst-italic">Filter by price range</label>
+        <div class="d-flex flex-column">
+          <label>Min</label>
+          <input type="number" min="0" [(ngModel)]="searchPriceMinimumFilter" />
+
+          <label>Max</label>
+          <input type="number" min="0" [(ngModel)]="searchPriceMaximumFilter" />
+        </div>
+      </li>
+    </ul>
+
+    <button
+      class="btn"
+      (click)="
+        onSearchChange({
+          title: this.searchProductTitle,
+          categoryId: this.searchCategoryFilter,
+          price_min: this.searchPriceMinimumFilter,
+          price_max: this.searchPriceMaximumFilter,
+        })
+      "
+    >
+      Search
+    </button>
+  </div>
+</div>
