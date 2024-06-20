@@ -26,8 +26,8 @@
       }
     </div>
   </div>
-  }@else if(!this.loading && this.subjects <= 0){
-
+  }@else if(!this.loading && this.subjects <= 0 && this.context() ===
+  'Products'){
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -44,6 +44,13 @@
         </div>
       </div>
     </div>
+  </div>
+  }@else if(!this.loading && this.subjects <= 0 && this.context() ===
+  'CategoryProducts'){
+  <div class="container">
+    <h4 class="mt-5">
+      There are no products in this category. Try search in another category
+    </h4>
   </div>
   } @else{
   <app-loading [loadingMessage]="'Loading...'" />
