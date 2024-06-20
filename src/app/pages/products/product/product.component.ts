@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class ProductComponent implements OnInit {
   productId?: string | null;
   product: any;
-  images: any = [];
+  productImages: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +27,7 @@ export class ProductComponent implements OnInit {
       this.productsService.getProduct(this.productId?.toString()).subscribe({
         next: (response) => {
           this.product = response;
+          this.productImages = JSON.parse(response.images);
         },
         error: (error) => {
           console.error(error);

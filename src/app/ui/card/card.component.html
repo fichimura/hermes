@@ -1,10 +1,7 @@
 <div class="card mb-3 p-2">
   @if(context() === 'Products' || context() === 'CategoryProducts'){
-  @if(subject().image || subject().category.image){
-  <img
-    src="{{ subject().image ?? subject().category.image }}"
-    class="card-img-top"
-  />
+  @if(imageUrl){
+  <img src="{{ imageUrl }}" class="card-img-top" />
   }
 
   <div class="card-body">
