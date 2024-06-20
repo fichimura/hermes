@@ -33,7 +33,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   onSearchChange(searchParams: SearchParams): void {
-    console.log(searchParams);
     this.search.emit(searchParams);
   }
 }
