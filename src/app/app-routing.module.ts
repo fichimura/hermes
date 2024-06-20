@@ -10,6 +10,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ProductComponent } from './pages/products/product/product.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { CategoryProductsComponent } from './pages/categories/category-products/category-products.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
       { path: ':categoryId', component: CategoryProductsComponent },
     ],
   },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
