@@ -9,7 +9,7 @@
     [searchPriceMaximumFilter]="this.searchFilters?.price_max"
     (search)="onSearch($event)"
   />
-  } @if(!this.loading && this.subjects.length > 0){
+  } @if(!this.error && !this.loading && this.subjects.length > 0){
   <div
     class="subject-list d-flex flex-column"
     infiniteScroll
@@ -26,8 +26,8 @@
       }
     </div>
   </div>
-  }@else if(!this.loading && this.subjects <= 0 && this.context() ===
-  'Products'){
+  }@else if(!this.error && !this.loading && this.subjects <= 0 && this.context()
+  === 'Products'){
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -45,14 +45,20 @@
       </div>
     </div>
   </div>
-  }@else if(!this.loading && this.subjects <= 0 && this.context() ===
-  'CategoryProducts'){
+  }@else if(!this.error && !this.loading && this.subjects <= 0 && this.context()
+  === 'CategoryProducts'){
   <div class="container">
     <h4 class="mt-5">
       There are no products in this category. Try search in another category
     </h4>
   </div>
-  } @else{
+  }@else if(!this.loading && this.error){
+  <app-error
+    [message]="
+      'An error occurred when trying to get what you wanted. Try again later'
+    "
+  />
+  }@else{
   <app-loading [loadingMessage]="'Loading...'" />
   }
 </div>

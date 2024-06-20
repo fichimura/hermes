@@ -19,10 +19,26 @@
 
     <ul class="dropdown-menu w-75" aria-labelledby="dropdownMenuButton1">
       <li class="p-2">
-        <div class="d-flex flex-column">
-          <label class="fst-italic">Filter by category</label>
+        @if(!this.error){
+        <label class="fst-italic">Filter by category</label>
+        }@else {
+        <div class="d-flex">
+          <label class="fst-italic text-danger me-2"
+            >Filter by category(Disabled)</label
+          >
+          <i
+            class="fa-solid fa-circle-info"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="There was an error getting the categories. Therefore this filter is disabled."
+          ></i>
         </div>
-        <select class="form-select" [(ngModel)]="searchCategoryFilter">
+        }
+        <select
+          class="form-select"
+          [(ngModel)]="searchCategoryFilter"
+          [disabled]="this.error"
+        >
           <option class="fst-italic" value="">No category filter</option>
           @for(category of this.categories; track category){
           <option value="{{ category.id }}">

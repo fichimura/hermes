@@ -47,4 +47,8 @@
     </div>
     <app-submit-cancel [submitText]="'Sign up'" />
   </form>
+
+  @if(error){
+  <app-error [message]="this.errorMessage" />
+  }
 </div>

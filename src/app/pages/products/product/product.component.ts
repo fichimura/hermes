@@ -3,11 +3,12 @@ import { ProductsService } from '../products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { isJsonStringifiedObject } from '../../../utils';
+import { ErrorComponent } from '../../../ui/error/error.component';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ErrorComponent],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',
 })
@@ -15,6 +16,8 @@ export class ProductComponent implements OnInit {
   productId?: string | null;
   product: any;
   productImages: any;
+
+  error = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +38,7 @@ export class ProductComponent implements OnInit {
           }
         },
         error: (error) => {
-          console.error(error);
+          this.error = true;
         },
       });
     }
