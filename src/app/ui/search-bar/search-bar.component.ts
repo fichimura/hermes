@@ -15,6 +15,8 @@ import { type SearchParams } from './searchParams.model';
 export class SearchBarComponent implements OnInit {
   categories: any;
 
+  error = false;
+
   @Input() searchProductTitle?: string;
   @Input() searchCategoryFilter?: string;
   @Input() searchPriceMinimumFilter?: string;
@@ -28,7 +30,7 @@ export class SearchBarComponent implements OnInit {
       next: (response) => {
         this.categories = [...response];
       },
-      error: (error) => console.error(error),
+      error: (error) => (this.error = true),
     });
   }
 
