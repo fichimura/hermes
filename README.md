@@ -1,27 +1,11 @@
 # Hermes
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
+## About Hermes
 
-## Development server
+Hermes is an app that allows the users to get the products that they are dreaming for. The platform provides an area to Sign Up and Sign In in the navbar part. Once you are logged in, you will get a personal page for yourself, which you can access in the same part in the navbar.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To provide this, the application has a tab in the sidenav called Products. In this one, the user can get all the products available in the platform, and he/she can search for specific products in the search bar by providing the name of the product. Also, in this search bar you can filter by price range(provide Min and Max to it work, if you provide only one value it won't wok since it is a range), and by categories.
 
-## Code scaffolding
+Another way to navigate is going in the sidenav and selecting the Categories option. Then the user will see a list of categories available. By selecting one of these, the app will show to you the products from that category for you to go through and enjoy.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
