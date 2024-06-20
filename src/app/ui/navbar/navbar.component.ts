@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.router.navigate(['/sign-in']);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }

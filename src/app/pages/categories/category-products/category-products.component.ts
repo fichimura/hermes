@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { CategoriesService } from '../categories.service';
 
 import { ListComponent } from '../../../ui/list/list.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-category-products',
@@ -12,7 +13,9 @@ import { ListComponent } from '../../../ui/list/list.component';
   templateUrl: './category-products.component.html',
   styleUrl: './category-products.component.scss',
 })
-export class CategoryProductsComponent implements OnInit {
+export class CategoryProductsComponent implements OnInit, OnDestroy {
+  getCategoryProductsSubscription?: Subscription;
+
   categoryId?: string | null;
   categoryProducts: any = [];
 
@@ -24,14 +27,22 @@ export class CategoryProductsComponent implements OnInit {
   ngOnInit(): void {
     this.categoryId = this.route.snapshot.paramMap.get('categoryId');
     if (this.categoryId) {
-      this.categoriesService.getProductsOfCategory(this.categoryId).subscribe({
-        next: (response) => {
-          this.categoryProducts = [...response];
-        },
-        error: (error) => {
-          console.error(error);
-        },
-      });
+      this.getCategoryProductsSubscription = this.categoriesService
+        .getProductsOfCategory(this.categoryId)
+        .subscribe({
+          next: (response) => {
+            this.categoryProducts = [...response];
+          },
+          error: (error) => {
+            console.error(error);
+          },
+        });
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.getCategoryProductsSubscription) {
+      this.getCategoryProductsSubscription.unsubscribe();
     }
   }
 }

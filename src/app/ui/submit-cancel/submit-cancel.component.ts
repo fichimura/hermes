@@ -13,7 +13,7 @@ export class SubmitCancelComponent {
 
   constructor(private router: Router) {}
 
-  onCancel() {
+  onCancel(): void {
     this.router.navigate(['/']);
   }
 }

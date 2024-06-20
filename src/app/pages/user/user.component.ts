@@ -18,7 +18,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.userSubscription = this.authService.userChange.subscribe(
       (userData) => {
         this.user = userData;

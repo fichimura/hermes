@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -13,6 +13,7 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { ErrorComponent } from '../error/error.component';
 
 import { type SearchParams } from '../search-bar/searchParams.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -28,7 +29,11 @@ import { type SearchParams } from '../search-bar/searchParams.model';
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
 })
-export class ListComponent {
+export class ListComponent implements OnInit, OnDestroy {
+  getProductsSubscription?: Subscription;
+  getCategoriesSubscription?: Subscription;
+  getProductsOfCategorySubscription?: Subscription;
+
   context = input.required<string>();
 
   constructor(
@@ -71,8 +76,8 @@ export class ListComponent {
     }
   }
 
-  getProducts() {
-    this.productsService
+  getProducts(): void {
+    this.getProductsSubscription = this.productsService
       .getProducts(this.currentOffset, this.searchFilters)
       .subscribe({
         next: (response) => {
@@ -86,30 +91,34 @@ export class ListComponent {
       });
   }
 
-  getCategories() {
-    this.categoriesService.getCategories().subscribe({
-      next: (response) => {
-        this.loading = false;
-        this.subjects = [...this.subjects, ...response];
-      },
-      error: (error) => {
-        this.loading = false;
-        this.error = true;
-      },
-    });
+  getCategories(): void {
+    this.getCategoriesSubscription = this.categoriesService
+      .getCategories()
+      .subscribe({
+        next: (response) => {
+          this.loading = false;
+          this.subjects = [...this.subjects, ...response];
+        },
+        error: (error) => {
+          this.loading = false;
+          this.error = true;
+        },
+      });
   }
 
-  getCategoryProducts(categoryId: string | null | undefined) {
-    this.categoriesService.getProductsOfCategory(categoryId).subscribe({
-      next: (response) => {
-        this.loading = false;
-        this.subjects = [...this.subjects, ...response];
-      },
-      error: (error) => {
-        this.loading = false;
-        this.error = true;
-      },
-    });
+  getCategoryProducts(categoryId: string | null | undefined): void {
+    this.getProductsOfCategorySubscription = this.categoriesService
+      .getProductsOfCategory(categoryId)
+      .subscribe({
+        next: (response) => {
+          this.loading = false;
+          this.subjects = [...this.subjects, ...response];
+        },
+        error: (error) => {
+          this.loading = false;
+          this.error = true;
+        },
+      });
   }
 
   onScroll(): void {
@@ -119,7 +128,7 @@ export class ListComponent {
     }
   }
 
-  onSearch(searchParams: SearchParams) {
+  onSearch(searchParams: SearchParams): void {
     this.searchFilters = searchParams;
     this.loading = true;
     this.subjects = [];
@@ -127,7 +136,7 @@ export class ListComponent {
     this.getProducts();
   }
 
-  onResetSearch() {
+  onResetSearch(): void {
     this.currentOffset = 0;
     this.searchFilters = {
       title: undefined,
@@ -139,7 +148,19 @@ export class ListComponent {
     this.getProducts();
   }
 
-  onBackToCategories() {
+  onBackToCategories(): void {
     this.router.navigate(['/categories']);
+  }
+
+  ngOnDestroy(): void {
+    if (this.getProductsSubscription) {
+      this.getProductsSubscription.unsubscribe();
+    }
+    if (this.getCategoriesSubscription) {
+      this.getCategoriesSubscription.unsubscribe();
+    }
+    if (this.getProductsOfCategorySubscription) {
+      this.getProductsOfCategorySubscription.unsubscribe();
+    }
   }
 }

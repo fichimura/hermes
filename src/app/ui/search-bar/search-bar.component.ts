@@ -1,5 +1,7 @@
-import { Component, Input, OnInit, output } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
+import { Subscription } from 'rxjs';
 
 import { CategoriesService } from '../../pages/categories/categories.service';
 
@@ -12,7 +14,9 @@ import { type SearchParams } from './searchParams.model';
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss',
 })
-export class SearchBarComponent implements OnInit {
+export class SearchBarComponent implements OnInit, OnDestroy {
+  getCategoriesSubscription?: Subscription;
+
   categories: any;
 
   error = false;
@@ -26,15 +30,23 @@ export class SearchBarComponent implements OnInit {
   constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit() {
-    this.categoriesService.getCategories().subscribe({
-      next: (response) => {
-        this.categories = [...response];
-      },
-      error: (error) => (this.error = true),
-    });
+    this.getCategoriesSubscription = this.categoriesService
+      .getCategories()
+      .subscribe({
+        next: (response) => {
+          this.categories = [...response];
+        },
+        error: (error) => (this.error = true),
+      });
   }
 
   onSearchChange(searchParams: SearchParams): void {
     this.search.emit(searchParams);
+  }
+
+  ngOnDestroy(): void {
+    if (this.getCategoriesSubscription) {
+      this.getCategoriesSubscription.unsubscribe();
+    }
   }
 }
