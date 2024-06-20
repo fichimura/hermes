@@ -1,6 +1,18 @@
+@import "../../../styles.scss";
+
 a{
     color: black;
     cursor: pointer;
+}
+
+.btn{
+    background-color: $dark-orange;
+
+    &:hover, &:active, &:focus{
+        background-color: $base-orange;
+        color: white;
+        border: 0.1rem solid white;
+    }
 }
 
 .subject-list{
