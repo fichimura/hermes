@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService } from '../categories.service';
 import { ActivatedRoute } from '@angular/router';
+
+import { CategoriesService } from '../categories.service';
+
 import { ListComponent } from '../../../ui/list/list.component';
 
 @Component({

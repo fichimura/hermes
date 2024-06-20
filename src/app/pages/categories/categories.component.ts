@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { ListComponent } from '../../ui/list/list.component';
 
 @Component({

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { isJsonStringifiedObject } from '../../../utils';
+
+import { ProductsService } from '../products.service';
+
 import { ErrorComponent } from '../../../ui/error/error.component';
+import { isJsonStringifiedObject } from '../../../utils';
 
 @Component({
   selector: 'app-product',

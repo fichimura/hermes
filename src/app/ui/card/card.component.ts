@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { isJsonStringifiedObject } from '../../utils';
 
 @Component({

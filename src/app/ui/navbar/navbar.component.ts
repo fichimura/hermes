@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../auth/auth.service';
+
 import { Subscription } from 'rxjs';
+
+import { AuthService } from '../../auth/auth.service';
 
 interface UserAuthenticated {
   avatar: string;

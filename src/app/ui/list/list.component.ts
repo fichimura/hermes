@@ -1,14 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { CardComponent } from '../card/card.component';
+
 import { ProductsService } from '../../pages/products/products.service';
 import { CategoriesService } from '../../pages/categories/categories.service';
-import { Router } from '@angular/router';
+
+import { CardComponent } from '../card/card.component';
 import { LoadingComponent } from '../loading/loading.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
-import { SearchParams } from '../search-bar/searchParams.model';
 import { ErrorComponent } from '../error/error.component';
+
+import { type SearchParams } from '../search-bar/searchParams.model';
 
 @Component({
   selector: 'app-list',

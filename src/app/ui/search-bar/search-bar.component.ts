@@ -1,14 +1,14 @@
 import { Component, Input, OnInit, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import { CategoriesService } from '../../pages/categories/categories.service';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 import { type SearchParams } from './searchParams.model';
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [FormsModule, NgxSliderModule, BsDropdownModule],
+  imports: [FormsModule],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss',
 })

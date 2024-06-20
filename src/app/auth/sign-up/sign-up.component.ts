@@ -1,8 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { SubmitCancelComponent } from '../../ui/submit-cancel/submit-cancel.component';
-import { AuthService } from '../auth.service';
+
 import { Subscription } from 'rxjs';
+
+import { AuthService } from '../auth.service';
+
+import { SubmitCancelComponent } from '../../ui/submit-cancel/submit-cancel.component';
 import { ErrorComponent } from '../../ui/error/error.component';
 
 @Component({
