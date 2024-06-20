@@ -3,16 +3,21 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { SubmitCancelComponent } from '../../ui/submit-cancel/submit-cancel.component';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
+import { ErrorComponent } from '../../ui/error/error.component';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [FormsModule, SubmitCancelComponent],
+  imports: [FormsModule, SubmitCancelComponent, ErrorComponent],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
 })
 export class SignUpComponent implements OnDestroy {
   signUpSubscription?: Subscription;
+
+  error = false;
+  errorMessage: string =
+    'Error when signing up. Check the values and try again.';
 
   constructor(private authService: AuthService) {}
 
@@ -24,7 +29,12 @@ export class SignUpComponent implements OnDestroy {
         password: form.value.password,
         avatar: form.value.avatar,
       })
-      .subscribe();
+      .subscribe({
+        error: (error) => {
+          this.error = true;
+          this.errorMessage = error.error.message;
+        },
+      });
   }
 
   ngOnDestroy(): void {
