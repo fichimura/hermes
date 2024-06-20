@@ -1,0 +1,10 @@
+@import "../../../styles.scss";
+
+.btn{
+    background-color: $dark-orange;
+
+    &:hover, &:active, &:focus{
+        background-color: black;
+        color: $dark-orange
+    }
+}
