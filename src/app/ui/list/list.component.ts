@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { LoadingComponent } from '../loading/loading.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { SearchParams } from '../search-bar/searchParams.model';
+import { ErrorComponent } from '../error/error.component';
 
 @Component({
   selector: 'app-list',
@@ -18,6 +19,7 @@ import { SearchParams } from '../search-bar/searchParams.model';
     CardComponent,
     LoadingComponent,
     SearchBarComponent,
+    ErrorComponent,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
@@ -37,6 +39,8 @@ export class ListComponent {
   loading = false;
   currentOffset = 0;
   searchFilters?: SearchParams;
+
+  error = false;
 
   ngOnInit(): void {
     if (
@@ -73,21 +77,20 @@ export class ListComponent {
         },
         error: (error) => {
           this.loading = false;
-
-          console.error(error);
+          this.error = true;
         },
       });
   }
 
   getCategories() {
-    this.categoriesService.getCategories(this.currentOffset).subscribe({
+    this.categoriesService.getCategories().subscribe({
       next: (response) => {
         this.loading = false;
         this.subjects = [...this.subjects, ...response];
       },
       error: (error) => {
         this.loading = false;
-        console.error(error);
+        this.error = true;
       },
     });
   }
@@ -100,7 +103,7 @@ export class ListComponent {
       },
       error: (error) => {
         this.loading = false;
-        console.error(error);
+        this.error = true;
       },
     });
   }
