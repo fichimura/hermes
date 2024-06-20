@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { isJsonStringifiedObject } from '../../utils';
 
 @Component({
   selector: 'app-card',
@@ -21,7 +22,11 @@ export class CardComponent implements OnInit {
       this.context() === 'Products' ||
       this.context() === 'CategoryProducts'
     ) {
-      this.imageUrl = JSON.parse(this.subject().images)[0];
+      if (isJsonStringifiedObject(this.subject().images)) {
+        this.imageUrl = JSON.parse(this.subject().images)[0];
+      } else {
+        this.imageUrl = this.subject().images[0];
+      }
     }
   }
 
