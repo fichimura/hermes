@@ -6,7 +6,7 @@
 
   <div class="card-body">
     <div class="d-flex"></div>
-    <a class="fw-bold card-text" (click)="onProductCardClicked()">{{
+    <a class="anchor fw-bold card-text" (click)="onProductCardClicked()">{{
       subject().title
     }}</a>
     <p class="card-text">{{ subject().price | currency : "USD" }}</p>
@@ -22,7 +22,7 @@
 
   <div class="card-body">
     <div class="d-flex"></div>
-    <a class="fw-bold card-text" (click)="onCategoryCardClicked()">{{
+    <a class="anchor fw-bold card-text" (click)="onCategoryCardClicked()">{{
       subject().name
     }}</a>
   </div>

@@ -26,3 +26,19 @@ body{
     color: black;
     font-family: $poppins-font;
 }
+
+.anchor {
+    color: black;
+    cursor: pointer;
+}
+
+.btn{
+    background-color: $dark-orange;
+    border: 0.1rem solid black;
+
+    &:hover, &:active, &:focus{
+        background-color: $base-orange;
+        color: white;
+        border: 0.1rem solid white;
+    }
+}

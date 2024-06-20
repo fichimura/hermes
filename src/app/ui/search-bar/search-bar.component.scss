@@ -10,16 +10,3 @@ a{
 .form-control{
     border:$border-search-bar;
 }
-
-
-.btn{
-    background-color: $dark-orange;
-    border: $border-search-bar;
-
-    &:hover, &:active, &:focus{
-        background-color: $base-orange;
-        color: white;
-        border: 0.1rem solid white;
-    }
-}
-
