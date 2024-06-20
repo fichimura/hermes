@@ -25,4 +25,12 @@
     </div>
     <app-submit-cancel [submitText]="'Sign in'" />
   </form>
+
+  @if(error){
+  <app-error
+    [message]="
+      'Error when signing in. Check your email and password and try again'
+    "
+  />
+  }
 </div>

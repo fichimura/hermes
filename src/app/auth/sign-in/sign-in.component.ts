@@ -3,15 +3,17 @@ import { SubmitCancelComponent } from '../../ui/submit-cancel/submit-cancel.comp
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
+import { ErrorComponent } from '../../ui/error/error.component';
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [FormsModule, SubmitCancelComponent],
+  imports: [FormsModule, SubmitCancelComponent, ErrorComponent],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent implements OnDestroy {
+  error = false;
   signInSubscription?: Subscription;
 
   constructor(private authService: AuthService) {}
@@ -22,7 +24,11 @@ export class SignInComponent implements OnDestroy {
         email: form.value.email,
         password: form.value.password,
       })
-      .subscribe();
+      .subscribe({
+        error: (error) => {
+          this.error = true;
+        },
+      });
   }
 
   ngOnDestroy(): void {
