@@ -1,12 +1,20 @@
 @import "../../../styles.scss";
 
+$border-search-bar: 0.1rem solid black;
+
 a{
     color: black;
     cursor: pointer;
 }
 
+.form-control{
+    border:$border-search-bar;
+}
+
+
 .btn{
     background-color: $dark-orange;
+    border: $border-search-bar;
 
     &:hover, &:active, &:focus{
         background-color: $base-orange;
@@ -15,7 +23,3 @@ a{
     }
 }
 
-.subject-list{
-    height: 90vh;
-    overflow-y: auto;
-}

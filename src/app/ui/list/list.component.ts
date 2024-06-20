@@ -6,6 +6,8 @@ import { ProductsService } from '../../pages/products/products.service';
 import { CategoriesService } from '../../pages/categories/categories.service';
 import { Router } from '@angular/router';
 import { LoadingComponent } from '../loading/loading.component';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { SearchParams } from '../search-bar/searchParams.model';
 
 @Component({
   selector: 'app-list',
@@ -15,6 +17,7 @@ import { LoadingComponent } from '../loading/loading.component';
     CommonModule,
     CardComponent,
     LoadingComponent,
+    SearchBarComponent,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
@@ -33,6 +36,7 @@ export class ListComponent {
   subjects: any = [];
   loading = false;
   currentOffset = 0;
+  searchFilters?: SearchParams;
 
   ngOnInit(): void {
     if (
@@ -60,16 +64,19 @@ export class ListComponent {
   }
 
   getProducts() {
-    this.productsService.getProducts(this.currentOffset).subscribe({
-      next: (response) => {
-        this.loading = false;
-        this.subjects = [...this.subjects, ...response];
-      },
-      error: (error) => {
-        this.loading = false;
-        console.error(error);
-      },
-    });
+    this.productsService
+      .getProducts(this.currentOffset, this.searchFilters)
+      .subscribe({
+        next: (response) => {
+          this.loading = false;
+          this.subjects = [...this.subjects, ...response];
+        },
+        error: (error) => {
+          this.loading = false;
+
+          console.error(error);
+        },
+      });
   }
 
   getCategories() {
@@ -103,6 +110,26 @@ export class ListComponent {
     if (this.context() === 'Products') {
       this.getProducts();
     }
+  }
+
+  onSearch(searchParams: SearchParams) {
+    this.searchFilters = searchParams;
+    this.loading = true;
+    this.subjects = [];
+    this.currentOffset = 0;
+    this.getProducts();
+  }
+
+  onResetSearch() {
+    this.currentOffset = 0;
+    this.searchFilters = {
+      title: undefined,
+      categoryId: undefined,
+      price_min: undefined,
+      price_max: undefined,
+    };
+
+    this.getProducts();
   }
 
   onBackToCategories() {

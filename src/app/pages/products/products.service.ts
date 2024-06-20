@@ -10,10 +10,16 @@ export class ProductsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getProducts(offset: number): Observable<any> {
-    return this.httpClient.get(
-      `${this.PRODUCTS_URL}?offset=${offset}&limit=10`
-    );
+  getProducts(offset: number, filters: any = {}): Observable<any> {
+    let url = `${this.PRODUCTS_URL}?offset=${offset}&limit=10`;
+
+    Object.keys(filters).forEach((key) => {
+      if (filters[key]) {
+        url += `&${key}=${filters[key]}`;
+      }
+    });
+
+    return this.httpClient.get(url);
   }
 
   getProduct(productId: string): Observable<any> {
